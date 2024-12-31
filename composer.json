@@ -1,0 +1,23 @@
+{
+  "name": "davidmeth/scuba-php",
+  "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+  "config": {
+    "process-timeout": 0
+  },
+  "description": "\"Framework\" entre aspas para o desafio de sete dias",
+  "scripts": {
+    "start": "php -S localhost:4242 -t public"
+  },
+  "type": "project",
+  "authors": [
+    {
+      "name": "me42th",
+      "email": "david.meth@live.com"
+    }
+  ],
+  "require": {}
+}
