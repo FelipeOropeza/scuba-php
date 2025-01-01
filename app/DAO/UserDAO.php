@@ -13,6 +13,10 @@ class UserDAO {
             $usuarios = [];
         }
 
+        if ($this->emailExists($user->getEmail(), $usuarios)) {
+            return false;
+        }
+
         $usuarios[] = [
             'id' => $user->getId(),
             'name' => $user->getName(),
@@ -23,5 +27,14 @@ class UserDAO {
         $novoArquivoJson = json_encode($usuarios, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
         return file_put_contents(DATA_LOCATION, $novoArquivoJson);
+    }
+
+    public function emailExists($email, $usuarios) {
+        foreach ($usuarios as $usuario) {
+            if ($usuario['email'] === $email) {
+                return true;
+            }
+        }
+        return false;
     }
 }
