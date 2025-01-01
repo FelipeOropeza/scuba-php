@@ -19,5 +19,8 @@
       "email": "david.meth@live.com"
     }
   ],
-  "require": {}
+  "require": {
+    "nikic/fast-route": "^1.3",
+    "twig/twig": "3.5"
+  }
 }

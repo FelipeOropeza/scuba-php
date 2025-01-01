@@ -32,6 +32,9 @@ readonly final class UserModel
     }
     public function setName(string $name): void
     {
+        if (empty(trim($name))) {
+            throw new \InvalidArgumentException("O nome não pode estar vazio.");
+        }
         $this->name = $name;
     }
 
@@ -41,7 +44,13 @@ readonly final class UserModel
     }
     public function setEmail(string $email): void
     {
-       $this->email = $email;
+        if (empty(trim($email))) {
+            throw new \InvalidArgumentException("O email não pode estar vazio.");
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new \InvalidArgumentException("Email inválido.");
+        }
+        $this->email = $email;
     }
 
     public function getPassword(): string
@@ -51,7 +60,13 @@ readonly final class UserModel
 
     public function setPassword(string $password): void
     {
-         $this->password = $password;
+        if (empty(trim($password))) {
+            throw new \InvalidArgumentException("A senha não pode estar vazia.");
+        }
+        if (strlen($password) < 10) {
+            throw new \InvalidArgumentException("A senha deve ter pelo menos 8 caracteres.");
+        }
+        $this->password = $password;
 
     }
 }

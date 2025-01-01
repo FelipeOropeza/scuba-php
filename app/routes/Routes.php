@@ -1,22 +1,7 @@
 <?php
 
-use App\Controller\UserController;
+use FastRoute\RouteCollector;
 
-$page = $_GET['page'] ?? 'login';
-$from = $_GET['from'] ?? null;
-
-switch ($page) {
-    case 'login':
-        UserController::do_login();
-        break;
-    case 'register':
-        if ($from == 'register') {
-            UserController::do_registerPost();
-            break;
-        }
-        UserController::do_register();
-        break;
-    default:
-        UserController::do_not_found();
-        break;
-}
+return function(RouteCollector $r) {
+    require_once __DIR__ . '/UserRoute.php'; 
+};

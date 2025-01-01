@@ -6,14 +6,9 @@ use App\Utils\RenderView;
 use App\Model\UserModel;
 use App\DAO\UserDAO;
 
-class UserController
+class UserController extends BaseController
 {
     static public function do_register()
-    {
-        RenderView::render_view("register");
-    }
-
-    static public function do_registerPost()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $person = $_POST['person'] ?? null;
@@ -38,15 +33,11 @@ class UserController
                 echo "Nenhum dado foi enviado.";
             }
         }
+        self::render('register');
     }
 
     static public function do_login()
     {
-        RenderView::render_view("login");
-    }
-
-    static public function do_not_found()
-    {
-        RenderView::render_view("not_found");
+        self::render('login');
     }
 }
