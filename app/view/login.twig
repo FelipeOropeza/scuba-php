@@ -12,15 +12,10 @@
 		<h1>Scuba<span>PHP</span>
 		</h1>
 
-		{% if success_message %}
-			<div class="mensagem-sucesso">{{ success_message }}</div>
-		{% endif %}
-
-		{% if error_message %}
-			<div class="mensagem-erro">{{ error_message }}</div>
-		{% endif %}
-
 		<form action="/login/check" method="POST">
+			{% if success_message %}
+				<div class="mensagem-sucesso" id="success-message"><p>{{ success_message }}</p></div>
+			{% endif %}
 			<label for="login">Email</label>
 			<input type="text" name="person[email]" required>
 			<span class="mensagem-erro">Mensagem de Erro</span>
@@ -33,5 +28,15 @@
 			<a href="/register">Cadastrar Usuário</a>
 			<a href="./?page=forget-password">Esqueci Minha Senha</a>
 		</form>
+		<script>
+			window.onload = function() {
+				var successMessage = document.getElementById('success-message');
+				if (successMessage) {
+					setTimeout(function() {
+						successMessage.style.display = 'none';
+					}, 3000);
+				}
+			};
+		</script>
 	</body>
 </html>

@@ -13,12 +13,13 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         http_response_code(404);
         \App\Controller\BaseController::render('not_found');
-
         break;
+
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         http_response_code(405);
         echo "405 - Método não permitido";
         break;
+
     case FastRoute\Dispatcher::FOUND:
         [$controller, $method] = $routeInfo[1];
         call_user_func([new $controller(), $method], ...$routeInfo[2]);

@@ -1,8 +1,23 @@
 [
     {
-        "id": 21,
+        "id": 69,
         "name": "Felipe",
         "email": "felipe@gmail.com",
-        "password": "$2y$12$URygqKq\/qQAZ4laQlkjJ7.xIAB3VQshtm.I7vLUCBzqoPHF87oYsa"
+        "password": "$2y$12$GcKALgGka4SI5KWWTPphW.CflNIfoziJThiJ7txQAmYzCQAHo6RPC",
+        "mail_validation": false
+    },
+    {
+        "id": 16,
+        "name": "Alexq",
+        "email": "amigos2006.co@gmail.com",
+        "password": "$2y$12$EBryZog3GgDIzbNQQELL5uL6GPcyIgbkoyGPDiSyNojluw5k\/C7E6",
+        "mail_validation": false
+    },
+    {
+        "id": 76,
+        "name": "Felipe",
+        "email": "felipe2006.co@gmail.com",
+        "password": "$2y$12$omLJxdGM\/BW5Fg5DErKQveqkmXXL8n2CtQsHiSktx5DB9rhjBoqh6",
+        "mail_validation": false
     }
 ]
