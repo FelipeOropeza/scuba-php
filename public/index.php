@@ -22,6 +22,13 @@ switch ($routeInfo[0]) {
 
     case FastRoute\Dispatcher::FOUND:
         [$controller, $method] = $routeInfo[1];
-        call_user_func([new $controller(), $method], ...$routeInfo[2]);
+        if ($uri === '/home') {
+            (new \App\Middleware\AuthMiddleware)($_REQUEST, $_SESSION, function($request, $response) use ($controller, $method, $routeInfo) {
+                call_user_func([new $controller(), $method], ...$routeInfo[2]);
+            });
+        } else {
+            // Executa a rota normalmente se não for '/home'
+            call_user_func([new $controller(), $method], ...$routeInfo[2]);
+        }
         break;
 }

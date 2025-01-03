@@ -17,12 +17,12 @@
 				<div class="mensagem-sucesso" id="success-message"><p>{{ success_message }}</p></div>
 			{% endif %}
 			<label for="login">Email</label>
-			<input type="text" name="person[email]" required>
-			<span class="mensagem-erro">Mensagem de Erro</span>
+			<input type="text" name="person[email]" value="{{ person.email ?? '' }}">
+			<span class="mensagem-erro">{{ errors['email'] }}</span>
 
 			<label for="password">Senha</label>
-			<input type="password" name="person[password]" required>
-			<span class="mensagem-erro">Mensagem de Erro</span>
+			<input type="password" name="person[password]" value="{{ person.password ?? '' }}">
+			<span class="mensagem-erro">{{ errors['password'] }}</span>
 
 			<button>Entrar</button>
 			<a href="/register">Cadastrar Usuário</a>

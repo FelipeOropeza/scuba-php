@@ -14,10 +14,10 @@
         "mail_validation": false
     },
     {
-        "id": 76,
+        "id": 31,
         "name": "Felipe",
         "email": "felipe2006.co@gmail.com",
-        "password": "$2y$12$omLJxdGM\/BW5Fg5DErKQveqkmXXL8n2CtQsHiSktx5DB9rhjBoqh6",
-        "mail_validation": false
+        "password": "$2y$12$8gYV0YkMkxSZL\/guqL.6k.W82Cr1d\/AOEIoeqT3Ian1.5ChdWgz5i",
+        "mail_validation": true
     }
 ]

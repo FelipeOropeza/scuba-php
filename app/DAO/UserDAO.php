@@ -4,8 +4,10 @@ namespace App\DAO;
 
 use App\Model\UserModel;
 
-class UserDAO {
-    public function insertUser(UserModel $user) {
+class UserDAO
+{
+    public function insertUser(UserModel $user)
+    {
         $mail_validation = false;
 
         $arquivoJson = file_get_contents(DATA_LOCATION);
@@ -32,7 +34,8 @@ class UserDAO {
         return file_put_contents(DATA_LOCATION, $novoArquivoJson);
     }
 
-    public function emailExists($email, $usuarios) {
+    public function emailExists($email, $usuarios)
+    {
         foreach ($usuarios as $usuario) {
             if ($usuario['email'] === $email) {
                 return true;
@@ -41,7 +44,36 @@ class UserDAO {
         return false;
     }
 
-    public function validarEmail($email) {
+    public function getUserByEmail($email)
+    {
+        $arquivoJson = file_get_contents(DATA_LOCATION);
+        $usuarios = json_decode($arquivoJson, true);
+
+        if (!is_array($usuarios)) {
+            return null;
+        }
+
+        foreach ($usuarios as $usuario) {
+            if ($usuario['email'] === $email) {
+                if (!$usuario['mail_validation']) {
+                    return false;
+                }
+
+                return new UserModel(
+                    $usuario['id'],
+                    $usuario['name'],
+                    $usuario['email'],
+                    $usuario['password']
+                );
+            }
+        }
+
+        return null;
+    }
+
+
+    public function validarEmail($email)
+    {
         $arquivoJson = file_get_contents(DATA_LOCATION);
         $usuarios = json_decode($arquivoJson, true);
 

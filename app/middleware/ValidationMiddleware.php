@@ -38,4 +38,17 @@ class ValidationMiddleware
 
         return $errors;
     }
+
+    public static function validateLogin($data){
+        $errors = [];
+
+        if (empty(trim($data['email']))) {
+            $errors['email'] = "O e-mail não pode estar vazio.";
+        }
+        if (empty(trim($data["password"]))) {
+            $errors['password'] = "A senha não pode estar vazia.";
+        }
+
+        return $errors;
+    }
 }
