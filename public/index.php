@@ -27,7 +27,6 @@ switch ($routeInfo[0]) {
                 call_user_func([new $controller(), $method], ...$routeInfo[2]);
             });
         } else {
-            // Executa a rota normalmente se não for '/home'
             call_user_func([new $controller(), $method], ...$routeInfo[2]);
         }
         break;

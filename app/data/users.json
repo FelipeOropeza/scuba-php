@@ -12,5 +12,12 @@
         "email": "amigos2006.co@gmail.com",
         "password": "$2y$12$EBryZog3GgDIzbNQQELL5uL6GPcyIgbkoyGPDiSyNojluw5k\/C7E6",
         "mail_validation": false
+    },
+    {
+        "id": 68,
+        "name": "Felipe",
+        "email": "felipe2006.co@gmail.com",
+        "password": "$2y$12$8N0PQuUxe6tsJfXQ67W.1uGMGrMqNbqxzdmehyE4CbULa0FUTJYO.",
+        "mail_validation": true
     }
 ]

@@ -37,10 +37,11 @@ class MailService
         }
     }
 
-    static public function validarEmail($token) {
+    static public function validarEmail($token)
+    {
         $email = self::ssl_decrypt($token);
         $userDAO = new UserDAO();
-        
+
         $userDAO->validarEmail($email);
         $_SESSION['success_message'] = 'Email validado com sucesso!';
         header('Location: /');
@@ -63,5 +64,40 @@ class MailService
         list($encrypted_data, $iv) = explode('::', base64_decode($data), 2);
 
         return openssl_decrypt($encrypted_data, $method, $key, 0, $iv);
+    }
+
+    static public function sendForgetPasswordEmail($email)
+    {
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = MAIL_HOST;
+            $mail->SMTPAuth = true;
+            $mail->Username = MAIL_USERNAME;
+            $mail->Password = MAIL_PASSWORD;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = MAIL_PORT;
+
+            $mail->setFrom(MAIL_USERNAME, 'Alteração de senha');
+            $mail->addAddress($email);
+
+            $token = self::generateToken($email);
+            $link = "http://localhost:4242/change-password/$token";
+            $mail->isHTML(true);
+            $mail->Subject = 'Troca de senha';
+            $mail->Body = "Clique no link para alterar a senha da sua conta: <a href='$link'>$link</a>";
+
+            $mail->send();
+            return 'Email enviado.';
+        } catch (Exception $e) {
+            error_log("Erro ao enviar email: " . $e->getMessage());
+            throw new \Exception("Erro ao enviar o email: " . $e->getMessage());
+        }
+    }
+
+    static public function generateToken($email)
+    {
+        $data = date('Y-m-d') . '|' . $email;
+        return base64_encode($data);
     }
 }
