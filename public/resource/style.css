@@ -39,6 +39,9 @@ form input{
 .mensagem-erro{
     font-size: .7rem;
     color: #dc3545;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .mensagem-sucesso p{
     color: #28a745;

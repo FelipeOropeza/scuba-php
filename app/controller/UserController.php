@@ -112,7 +112,14 @@ class UserController extends BaseController
                 }
 
                 if (password_verify($person['password'], $user->getPassword())) {
-                    $_SESSION['user'] = $user;
+
+                    $userArray = [
+                        'id' => $user->getId(),
+                        'name' => $user->getName(),
+                        'email' => $user->getEmail(),
+                    ];
+                
+                    $_SESSION['user'] = $userArray;
                     header('Location: /home');
                     exit();
                 } else {
@@ -134,7 +141,28 @@ class UserController extends BaseController
     }
 
     static public function do_home()
-    {
-        self::render('home');
+    {   
+        $errors = $_SESSION['errors'] ?? [];
+        $sucess_message = $_SESSION['success_message'] ?? '';
+        $user = $_SESSION['user'] ?? null;
+        self::render('home', ['user' => $user, 'errors' => $errors, 'success_message' => $sucess_message]);
+    }
+
+    static public function do_logout(){
+        unset($_SESSION['user']);
+        header('Location: /');
+        exit();
+    }
+
+    static public function deleteAccount(){
+        $user = $_SESSION['user'] ?? null;
+        
+        $userDAO = new UserDAO();
+        $userDAO->deleteUserById($user['id']);
+
+        $_SESSION['success_message'] = 'Sua conta foi excluida.';
+
+        header('Location: /');
+        exit();
     }
 }

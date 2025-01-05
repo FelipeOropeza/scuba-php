@@ -92,4 +92,28 @@ class UserDAO
 
         return false;
     }
+
+    public function deleteUserById($id)
+{
+    $arquivoJson = file_get_contents(DATA_LOCATION);
+    $usuarios = json_decode($arquivoJson, true);
+
+    if (!is_array($usuarios)) {
+        return false;
+    }
+
+    foreach ($usuarios as $index => $usuario) {
+        if ($usuario['id'] === $id) {
+            unset($usuarios[$index]);
+
+            $usuarios = array_values($usuarios);
+
+            $novoArquivoJson = json_encode($usuarios, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            return file_put_contents(DATA_LOCATION, $novoArquivoJson);
+        }
+    }
+
+    return false;
+}
+
 }

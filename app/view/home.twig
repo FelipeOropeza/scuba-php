@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="mensagem-sucesso">
-        <p>Mensagem de Sucesso</p>
+        <p>{{ sucess_message }}</p>
     </div>
     <h1>Scuba<span>PHP</span></h1>
 
@@ -20,15 +20,15 @@
         </div>
         <div class="dados">
             <div class="info-dados">
-                <span class="mensagem-erro">Mensagem de Erro</span>
-                <p>Nome do Usuário:{{field_name}}</p>
-                <p>Email do Usuário:{{field_email}}</p>
+                <span class="mensagem-erro">{{ errors['erro'] }}</span>
+                <p>Nome do Usuário: {{ user['name'] }}</p>
+                <p>Email do Usuário: {{ user['email'] }}</p>
             </div>
             <div class="delete">
-                <a href="./?page=logout&from=home">
+                <a href="/logout">
                     <img src="./resource/exit-outline.svg">
                 </a>
-                <a href="./?page=delete-account&from=home">
+                <a href="/delete-account">
                     <img src="./resource/trash-outline.svg">
                 </a>
             </div>
